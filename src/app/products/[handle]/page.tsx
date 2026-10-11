@@ -1,6 +1,9 @@
 import { sdk } from "@/lib/medusa";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import AddToCartButton from "./add-to-cart";
+
+export const dynamic = "force-dynamic";
 
 export default async function ProductPage({
   params,
@@ -46,13 +49,16 @@ export default async function ProductPage({
           </p>
           <p className="text-purple-200/70 mb-8">{product.description}</p>
 
-          <button className="bg-purple-600 hover:bg-purple-500 text-white px-8 py-3 rounded-lg font-semibold transition">
-            Add to Cart
-          </button>
+          {variant && price && (
+            <AddToCartButton
+              id={variant.id}
+              title={product.title}
+              price={price.amount}
+              thumbnail={product.thumbnail}
+            />
+          )}
         </div>
       </div>
     </main>
   );
 }
-
-export const dynamic = "force-dynamic";

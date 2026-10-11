@@ -1,22 +1,15 @@
 import { sdk } from "@/lib/medusa";
 import Link from "next/link";
+import Header from "./header";
+
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const { products } = await sdk.store.product.list({ limit: 20 });
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-purple-950 via-indigo-950 to-black text-white">
-      <header className="border-b border-purple-800/30">
-        <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
-          <h1 className="text-3xl font-bold tracking-tight">
-            <span className="text-purple-400">3rd Eye</span> Supply
-          </h1>
-          <nav className="flex gap-6 text-sm">
-            <Link href="/" className="hover:text-purple-300">Shop</Link>
-            <Link href="/cart" className="hover:text-purple-300">Cart</Link>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="text-center mb-12">
@@ -67,5 +60,3 @@ export default async function Home() {
     </main>
   );
 }
-
-export const dynamic = "force-dynamic";
